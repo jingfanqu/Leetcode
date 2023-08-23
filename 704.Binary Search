@@ -1,0 +1,33 @@
+//search algorithm used to find a particular element in a sorted dataset
+//set two pointers, one pointing to the start of the dataset (often called left) and the other pointing to the end of the dataset (often called right).
+//In each step, calculate the midpoint of the current dataset. This can be achieved with the formula 
+//If the value at the midpoint is equal to the target value, the search is successful, and the midpoint is returned.
+//If the value at the midpoint is less than the target value, update left to mid + 1, indicating that the target lies to the right of the midpoint.
+//If the value at the midpoint is greater than the target value, update right to mid - 1, indicating that the target lies to the left of the midpoint.
+//Continue the above steps, narrowing down the search range, until left exceeds right. At this point, the search is unsuccessful, indicating that the target value is not present in the dataset.
+
+
+class Solution {
+    public int search(int[] nums, int target) {
+        if(nums==null || target < nums[0] ||target>nums[nums.length-1]){
+            return -1;
+        }
+        int left = 0;
+        int right = nums.length-1;
+        while(left <= right){
+            //int mid = left + ((right - left) >> 1);  it avoids potential overflow
+            int mid = (left+right)/2;
+            if(target < nums[mid]){
+                right = mid - 1;
+            }
+            else if(target > nums[mid]){
+                left = mid + 1;
+            }
+            else if(nums[mid] == target){
+                return mid;
+            }
+
+        }
+        return -1;
+    }
+}
