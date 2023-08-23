@@ -1,0 +1,17 @@
+
+//two pointers
+//The fast pointer is used to traverse the array, while the slow pointer indicates the next position to insert
+
+class Solution {
+    public int removeElement(int[] nums, int val) {
+        int slow = 0;
+        for(int fast = 0; fast<nums.length; fast++){
+            if(nums[fast] != val){
+                nums[slow] = nums[fast];
+                slow++;
+            }
+        }
+        return slow;
+
+    }
+}
