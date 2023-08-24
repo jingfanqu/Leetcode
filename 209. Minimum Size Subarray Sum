@@ -1,0 +1,31 @@
+/*
+Sliding Window:
+
+A right pointer traverses the nums array.
+For every position of the right pointer, the corresponding value nums[right] is added to the sum.
+An inner while loop checks if the current sum is greater than or equal to the target. If it is:
+The length of the current subarray (right - left + 1) is calculated and compared to the current result. If it's smaller, it updates result.
+The value at the left pointer is subtracted from the sum, and the left pointer is incremented. This essentially "slides" the window to the right.
+This process ensures that we are finding the smallest subarray with a sum greater than or equal to the target.
+
+*/
+
+
+
+class Solution {
+    public int minSubArrayLen(int target, int[] nums) {
+        int sum = 0;
+        int result = Integer.MAX_VALUE;
+        int left = 0;
+        for(int right = 0; right < nums.length; right++){
+            sum += nums[right];
+            while(sum>=target){
+                result = Math.min(result, right - left +1);
+                sum -= nums[left];
+                left++;
+            }
+        }
+        return result == Integer.MAX_VALUE? 0:result;
+
+    }
+}
