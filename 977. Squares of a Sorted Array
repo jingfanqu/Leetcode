@@ -1,0 +1,32 @@
+/*
+Start by using two pointers, left and right, which begin at the front and end of the array, respectively.
+In each iteration, compare the squares of the numbers pointed to by the left and right pointers.
+Store the larger square at the current index position in the result array, and then decrement the index.
+If the square of the number at the right pointer is larger, decrement the right pointer. Otherwise, increment the left pointer.
+Continue this process until the left pointer exceeds or equals the right pointer.
+*/
+
+class Solution {
+    public int[] sortedSquares(int[] nums) {
+        int[] result = new int[nums.length];
+        int left = 0;
+        int right = nums.length - 1;
+        int index = nums.length - 1;
+        while(left<=right){
+            if(nums[right]*nums[right]>nums[left]*nums[left]){
+                result[index] = nums[right]*nums[right];
+                index --;
+                right --;
+            }
+            else{
+                result[index] = nums[left] * nums[left];
+                index --;
+                left ++;
+
+            }
+        }
+        return result;
+
+
+    }
+}
