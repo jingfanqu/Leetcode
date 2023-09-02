@@ -1,0 +1,45 @@
+class MyStack {
+    Deque<Integer> que1;
+    // Deque 接口继承了 Queue 接口
+    // 所以 Queue 中的 add、poll、peek等效于 Deque 中的 addLast、pollFirst、peekFirst
+    public MyStack() {
+        que1 = new ArrayDeque<>();
+    }
+    
+    public void push(int x) {
+        que1.addLast(x);
+    }
+    
+    public int pop() {
+        int size = que1.size();
+        size--;
+        // 将 que1 导入 que2 ，但留下最后一个值
+        while (size > 0) {
+            size--;
+            que1.addLast(que1.peekFirst());//取出第一个元素加到尾部
+            que1.pollFirst(); //移除和返回第一个元素
+        }
+        int res = que1.pollFirst(); //移除和返回第一个元素
+        return res;
+
+    }
+    
+    public int top() {
+        return que1.peekLast();
+
+    }
+    
+    public boolean empty() {
+        return que1.isEmpty();
+
+    }
+}
+
+/**
+ * Your MyStack object will be instantiated and called as such:
+ * MyStack obj = new MyStack();
+ * obj.push(x);
+ * int param_2 = obj.pop();
+ * int param_3 = obj.top();
+ * boolean param_4 = obj.empty();
+ */
