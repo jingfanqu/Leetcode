@@ -1,0 +1,23 @@
+//最小树深=最小树高
+ //后续遍历
+class Solution {
+    public int minDepth(TreeNode root) {
+        if(root==null){
+            return 0;
+        }
+
+        int leftDepth = minDepth(root.left);
+        int rightDepth = minDepth(root.right);
+        //左子树为空
+        if(root.left == null){
+            return rightDepth+1;
+        }
+        //右子树为空
+        if(root.right == null){
+            return leftDepth+1;
+        }
+        //左右节点都不为空
+        return Math.min(leftDepth,rightDepth)+1;
+
+    }
+}
