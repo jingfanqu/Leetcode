@@ -1,0 +1,12 @@
+//深度：从根节点到该节点的距离
+ //高度：从该节点到叶子节点的距离
+ //节点的高度就是二叉树的最大深度
+class Solution {
+    public int maxDepth(TreeNode root) {
+        if(root==null)
+            return 0;
+       int leftDepth = maxDepth(root.left);
+       int rightDepth = maxDepth(root.right);
+       return Math.max(leftDepth,rightDepth)+1; //加1是因为要加上当前节点的深度
+    }
+}
