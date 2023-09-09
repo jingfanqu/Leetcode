@@ -1,0 +1,30 @@
+class Solution {
+        int Deep = -1;
+        int value = 0;
+    public int findBottomLeftValue(TreeNode root) {
+        value = root.val;
+        findLeftValue(root, 0);
+        return value;
+    }
+
+    private void findLeftValue(TreeNode root, int deep){
+        if(root == null) return;
+        if(root.left == null && root.right == null){
+            if(deep > Deep) {
+                Deep = deep;
+                value = root.val;
+            }
+        }
+
+        if(root.left != null){
+            deep++;
+            findLeftValue(root.left, deep);
+            deep--;
+        }
+        if(root.right != null){
+            deep++;
+            findLeftValue(root.right, deep);
+            deep--;
+        }
+    }
+}
